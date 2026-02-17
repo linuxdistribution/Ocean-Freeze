@@ -2,6 +2,8 @@
 
 Spigot plugin for Minecraft 1.8+ that integrates with the [Ocean Anticheat API](https://anticheat.ac) to automate the screenshare process.
 
+Video Demo: [Demo](https://youtu.be/o9VYs2kKARI)
+
 ## Features
 
 - Freeze system with movement, command, and interaction blocking
