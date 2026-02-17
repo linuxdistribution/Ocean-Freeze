@@ -1,0 +1,163 @@
+# ═════════════════ Ocean API Configuration ═════════════════
+anticheat:
+  # Your Ocean API Key (Enterprise owner only)
+  api-key: "YOUR_API_KEY_HERE"
+
+  # Game type for scans (Java, Bedrock, FiveM, RedM, RageMP, AltV, Roblox, SanAndreas, Cod, Rust)
+  game-type: "Java"
+
+  # Enable RAM dump analysis
+  ram-dump: false
+
+  # Make pins private (only visible to you)
+  private-pins: false
+
+  # Base URL for scan results (do not change unless you know what you're doing)
+  results-base-url: "https://anticheat.ac/results/pin/"
+
+# ════════════════════ Plugin Settings ════════════════════
+settings:
+  # Broadcast freeze actions to all staff members
+  broadcast-to-staff: true
+
+  # Auto-ban players who disconnect while frozen
+  auto-ban-on-quit: false
+
+  # Ban command template (use %player% for player name)
+  # Examples: "ban %player% SS Evasion" | "tempban %player% 7d Left during SS"
+  ban-command: "ban %player% Disconnected during screenshare"
+
+  # Freeze mode: AUTO or MANUAL
+  # AUTO: Automatically creates scan PIN when freezing
+  # MANUAL: Only freezes player, use /ocean scan <player> to start scan
+  freeze-mode: "MANUAL"
+
+  # Freeze Response GUI
+  # When enabled, frozen players see a GUI with "Admit" and "Proceed" buttons
+  freeze-gui-enabled: true
+
+  # Command executed when a player admits to hacking (use %player% for player name)
+  freeze-gui-admit-command: "ban %player% Admitted to using hacks"
+
+  # Repeat freeze message interval (in seconds)
+  # The freeze warning will repeat at this interval
+  # Set to 0 to disable repetition
+  freeze-message-interval: 30
+
+  # Repeat scan instructions interval (in seconds)
+  # Scan instructions will repeat until scan starts
+  # Set to 0 to disable repetition
+  scan-message-interval: 30
+
+  # Scan monitoring interval (in seconds)
+  # How often the plugin checks the scan status from the API
+  scan-check-interval: 5
+
+  # Scan monitoring timeout (in minutes)
+  # Maximum time to monitor a scan before giving up
+  scan-timeout: 30
+
+  # Potion effects applied to frozen players
+  freeze-effects:
+    enabled: true
+    effects:
+      - type: BLINDNESS
+        amplifier: 0
+      - type: SLOW_DIGGING
+        amplifier: 255
+      # Available effects: BLINDNESS, SLOW_DIGGING (mining fatigue), SLOWNESS,
+      # WEAKNESS, NIGHT_VISION, DARKNESS (1.17+), etc.
+      # amplifier: 0 = level 1, 1 = level 2, 255 = max level
+
+  # Commands that frozen players can use (without /)
+  allowed-commands:
+    - "msg"
+    - "message"
+    - "tell"
+    - "whisper"
+    - "w"
+    - "reply"
+    - "r"
+
+# ══════════════════ Discord Webhook Configuration ══════════════════
+discord:
+  # Discord webhook URL (set to "none" to disable)
+  webhook-url: "none"
+
+  # Bot display name in Discord
+  bot-name: "Ocean Freeze 🧊"
+
+  # Bot avatar URL (leave empty for default)
+  bot-avatar: ""
+
+  # Enable/disable specific webhook logs
+  log-freeze: true
+  log-scan-results: true
+
+  # ═══ Freeze Notification ═══
+  freeze-embed-title: "🧊 Player Frozen"
+  freeze-embed-description: "**{player}** has been frozen by **{staff}**"
+  freeze-embed-color: 3447003  # Blue (decimal color)
+
+  freeze-field-player-name: "👤 Player"
+  freeze-field-player-value: "{player}"
+  freeze-field-staff-name: "👮 Staff"
+  freeze-field-staff-value: "{staff}"
+  freeze-field-pin-name: "🔑 Scan PIN"
+  freeze-field-pin-value: "`{pin}`"
+
+  freeze-footer: "Ocean Freeze Plugin"
+  freeze-footer-icon: ""
+
+  # ═══ Admit Notification ═══
+  admit-embed-title: "\u26a0\ufe0f Player Admitted to Hacking"
+  admit-embed-description: "**{player}** has admitted to hacking (frozen by **{staff}**)"
+  admit-embed-color: 15158332  # Red (decimal color)
+
+  # ═══ Scan Completed Notification ═══
+  scan-embed-title: "📊 Scan Completed - {result}"
+  scan-embed-description: "Screenshare scan for **{player}** has been completed."
+
+  # Colors for different results (decimal format)
+  scan-embed-color-cheating: 15158332   # Red
+  scan-embed-color-suspicious: 16776960 # Yellow
+  scan-embed-color-legit: 3066993       # Green
+
+  # Scan result fields (all customizable!)
+  scan-field-player-name: "👤 Player"
+  scan-field-player-value: "{player}"
+  scan-field-player-inline: true
+
+  scan-field-result-name: "📋 Result"
+  scan-field-result-value: "{result}"
+  scan-field-result-inline: true
+
+  scan-field-detections-name: "🔴 Detections"
+  scan-field-detections-value: "{detections}"
+  scan-field-detections-inline: true
+
+  scan-field-warnings-name: "🟡 Warnings"
+  scan-field-warnings-value: "{warnings}"
+  scan-field-warnings-inline: true
+
+  scan-field-suspicious-name: "🟠 Suspicious"
+  scan-field-suspicious-value: "{suspicious}"
+  scan-field-suspicious-inline: true
+
+  scan-field-vpn-name: "🌐 VPN"
+  scan-field-vpn-value: "{vpn}"
+  scan-field-vpn-inline: true
+
+  scan-field-country-name: "🌍 Country"
+  scan-field-country-value: "{country}"
+  scan-field-country-inline: true
+
+  scan-field-scan-time-name: "⏱️ Scan Time"
+  scan-field-scan-time-value: "{scantime}"
+  scan-field-scan-time-inline: true
+
+  scan-field-url-name: "🔗 View Full Results"
+  scan-field-url-value: "[Click here]({scanurl})"
+
+  scan-footer: "Ocean Freeze Plugin"
+  scan-footer-icon: ""
