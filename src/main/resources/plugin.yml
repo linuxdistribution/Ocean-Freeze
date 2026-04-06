@@ -3,7 +3,6 @@ version: ${project.version}
 main: ac.ocean.OceanPlugin
 author: Ocean Anticheat
 description: Freeze plugin with Ocean API integration
-api-version: 1.0
 softdepend: []
 
 commands:

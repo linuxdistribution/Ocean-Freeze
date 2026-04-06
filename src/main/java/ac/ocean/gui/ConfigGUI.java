@@ -11,6 +11,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import ac.ocean.OceanPlugin;
+import ac.ocean.utils.VersionSupport;
 
 import java.util.Arrays;
 
@@ -56,7 +57,7 @@ public class ConfigGUI implements Listener {
 
         boolean autoBan = plugin.getConfig().getBoolean("settings.auto-ban-on-quit", true);
         gui.setItem(14, createItem(
-                autoBan ? Material.DIAMOND_SWORD : Material.WOOD_SWORD,
+                autoBan ? Material.DIAMOND_SWORD : VersionSupport.getWoodenSword(),
                 "§e§lAuto-ban on Quit",
                 "§7Status: " + (autoBan ? "§aEnabled" : "§cDisabled"),
                 "",
@@ -124,7 +125,7 @@ public class ConfigGUI implements Listener {
         ));
 
         gui.setItem(31, createItem(
-                Material.WOOL,
+                VersionSupport.getWhiteWool(),
                 "§a§lSave & Close",
                 "§7Saves configuration and closes",
                 "",
@@ -135,7 +136,7 @@ public class ConfigGUI implements Listener {
     }
 
     private ItemStack createFiller() {
-        ItemStack item = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 7);
+        ItemStack item = VersionSupport.createGrayGlassPane();
         ItemMeta meta = item.getItemMeta();
         if (meta != null) {
             meta.setDisplayName(" ");

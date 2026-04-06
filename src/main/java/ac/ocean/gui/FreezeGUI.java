@@ -14,6 +14,7 @@ import ac.ocean.OceanPlugin;
 import ac.ocean.manager.MessageManager;
 import ac.ocean.model.FrozenPlayer;
 import ac.ocean.utils.ClickableMessage;
+import ac.ocean.utils.VersionSupport;
 
 import java.util.*;
 
@@ -33,7 +34,7 @@ public class FreezeGUI implements Listener {
         MessageManager msg = plugin.getMessageManager();
         Inventory gui = Bukkit.createInventory(null, 27, GUI_TITLE);
 
-        ItemStack filler = createItem(Material.STAINED_GLASS_PANE, (short) 7, " ");
+        ItemStack filler = createFiller();
         for (int i = 0; i < 27; i++) {
             gui.setItem(i, filler);
         }
@@ -50,7 +51,7 @@ public class FreezeGUI implements Listener {
                     "&c&lClick to confirm"
             ));
         }
-        gui.setItem(11, createItem(Material.WOOL, (short) 14, admitTitle, admitLore));
+        gui.setItem(11, createColoredWoolItem((short) 14, "RED_WOOL", admitTitle, admitLore));
 
         String proceedTitle = colorize(msg.getMessage("freeze-gui-proceed-title",
                 "&a&lI'm Legit - Start Screenshare"));
@@ -68,7 +69,7 @@ public class FreezeGUI implements Listener {
                     "&a&lClick to start screenshare"
             ));
         }
-        gui.setItem(15, createItem(Material.WOOL, (short) 5, proceedTitle, proceedLore));
+        gui.setItem(15, createColoredWoolItem((short) 5, "LIME_WOOL", proceedTitle, proceedLore));
 
         player.openInventory(gui);
     }
@@ -230,12 +231,18 @@ public class FreezeGUI implements Listener {
         return suppressReopen.contains(uuid);
     }
 
-    private ItemStack createItem(Material material, short data, String name) {
-        return createItem(material, data, name, null);
+    private ItemStack createFiller() {
+        ItemStack item = VersionSupport.createGrayGlassPane();
+        ItemMeta meta = item.getItemMeta();
+        if (meta != null) {
+            meta.setDisplayName(" ");
+            item.setItemMeta(meta);
+        }
+        return item;
     }
 
-    private ItemStack createItem(Material material, short data, String name, List<String> lore) {
-        ItemStack item = new ItemStack(material, 1, data);
+    private ItemStack createColoredWoolItem(short legacyData, String modernName, String name, List<String> lore) {
+        ItemStack item = VersionSupport.createColoredWool(legacyData, modernName);
         ItemMeta meta = item.getItemMeta();
         if (meta != null) {
             meta.setDisplayName(name);
